@@ -1,0 +1,147 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Profile
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset("css/about.css") }}">
+	<link rel="stylesheet" href="{{ asset("css/admin.css") }}">
+
+{% endblock %}
+
+{% block body %}
+	{% include "components/navbar.html" %}
+
+	<div class="backColor w-75 mx-auto">
+		<div class="container">
+			<h1>{{ user.firstName }}
+				{{ user.lastName }}</h1>
+
+			<div class="card-wrapper w-100 w-md-75 mx-auto ">
+				<div class="card border-0 p-0 m-0d-flex flex-column flex-md-row">
+					<div class="wrap-pic w-100 w-md-50">
+						<img src="{{ asset("pictures/" ~ user.picture ) }}" class="card-img-to w-100" alt="{{ user.lastName }}" style="aspect-ratio:1;object-fit:cover">
+					</div>
+					<div class="wrap-body w-100 w-md-50 d-flex flex-column justify-content-center align-items-center">
+						<div class="card-body">
+							<h5 class="card-title">{{ user.firstName }}
+								{{ user.lastName }}</h5>
+							<p class="card-text">{{ user.email }}</p>
+
+							<p class="card-text">User-Id:
+								{{ user.id }}</p>
+							<p class="card-text">Role(s):
+								{{ user.roles ? user.roles|json_encode : '' }}</p>
+
+						</div>
+						<div class="card-body d-flex justify-content-center align-items-center">
+							<a href="{{ path('app_features_new') }}" class="btn btn-outline-dark rounded-0 mx-2">Add a trip!</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<h2>My Trips:</h2>
+	<ul>
+
+		{% block content %}
+		<ul>
+			{% for feature in features %}
+				{% if feature.getFkUser().getId() == app.user.id %}
+					<li>Trip Number 
+						{{ feature.id }}
+						<ul>
+							<h3>Activities
+							</h3>
+							<div class="row gap-3 row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mx-auto">
+								{% for activity in activitiesByFeatures[feature.id] %}
+									<div class="aroundDiv" style="max-width: 25rem">
+
+										<div class="widthCard card my-3" style="max-width: 25rem; padding:0.5rem;">
+											<div class="imageonTop" style="height:15rem; object-fit: fill; overflow: hidden;">
+
+
+												<img class="card-img-top" src="{{ activity.image }}" alt="{{ activity.name }}"/>
+											</div>
+											<div class="card-body">
+												<h5 class="card-title">{{ activity.name }}</h5>
+												<p id="description" class="card-text">{{ activity.description }}</p>
+
+												<ul class="list-group list-group-flush">
+													<li class="list-group-item">Type:
+														{{ activity.getFkType().getName() }}</li>
+													<li class="list-group-item">Budget:
+														{{ activity.getFkBudget().getName() }}</li>
+
+												</ul>
+												<a href="{{ path('app_activity_show', {'id': activity.id}) }}" class="btn btn-primary featuresbtn" style="margin-left: 4rem;">Details</a>
+
+
+											</div>
+										</div>
+									</div>
+								{% endfor %}
+							</div>
+							<h3>Restaurants selected for your trip:</h3>
+							<div class="row gap-3 row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mx-auto">
+								{% for restaurant in restaurantsByFeatures[feature.id] %}
+									<div class="aroundDiv" style="max-width: 25rem">
+
+										<div class="widthCard card my-3" style="max-width: 25rem; padding:0.5rem;">
+											<div class="imageonTop" style="height:15rem; object-fit: fill; overflow: hidden;">
+
+												<img class="card-img-top" src="{{ restaurant.image }}" alt="{{ restaurant.name }}"/>
+											</div>
+											<h5 class="card-title">{{ restaurant.name }}</h5>
+											<p id="description" class="card-text">{{ restaurant.description }}</p>
+
+											<ul class="list-group list-group-flush">
+												<li class="list-group-item">Cuisine:
+													{{ restaurant.cuisine }}</li>
+												<li class="list-group-item">Budget:
+													{{ restaurant.getFkBudget().getName() }}</li>
+
+											</ul>
+
+											<a href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}" class="w-25 mx-auto btn btn-primary featuresbtn" style="margin-left: 4rem;">Details</a>
+
+
+										</div>
+									</div>
+								{% endfor %}
+							</div>
+
+							<h3>Accommodation selected for your trip:</h3>
+							<div class="row gap-3 row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mx-auto">
+								{% for accommodation in accommodationByFeatures[feature.getId()] %}
+									<div class="aroundDiv" style="max-width: 25rem">
+										<div class="widthCard card my-3" style="max-width: 25rem; padding:0.5rem;">
+											<div class="imageonTop" style="height:15rem; object-fit: fill; overflow: hidden;">
+												<img class="card-img-top" src="{{ accommodation.image }}" alt="{{ accommodation.name }}"/>
+											</div>
+
+											<div class="card-body">
+												<h5 class="card-title">{{ accommodation.name }}</h5>
+												<p id="description" class="card-text">{{ accommodation.description }}</p>
+												<ul class="list-group list-group-flush">
+													<li class="list-group-item">Type:
+														{{ accommodation.getFktype().getName() }}</li>
+													<li class="list-group-item">Budget:
+														{{ accommodation.getFkBudget().getName() }}</li>
+												</ul>
+												<a href="{{ path('app_accommodation_show', {'id': accommodation.id}) }}" class="btn btn-primary featuresbtn" style="margin-left: 4rem;">Details</a>
+
+											</div>
+										</div>
+									</div>
+
+								{% endfor %}
+							</div>
+						</li>
+					</li>
+				</ul>
+			</li>
+		{% endif %}
+	{% endfor %}
+</ul>{% endblock %}</ul>{% endblock %}

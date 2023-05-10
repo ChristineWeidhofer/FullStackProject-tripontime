@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Journal{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset("css/about.css") }}">
+	<link rel="stylesheet" href="{{ asset("css/admin.css") }}">
+	<link rel="stylesheet" href="{{ asset("css/footer.css") }}">
+	<style>
+		label {
+			font-weight: bold;
+			margin-bottom: 0.31rem;
+			color: rgb(0, 0, 0);
+		}
+	</style>
+{% endblock %}
+
+{% block body %}
+    {% include "components/navbar.html" %}
+
+<div class="container w-75">
+    <h1>Create new Journal</h1>
+
+    {{ include('journal/_form.html.twig') }}
+
+    <button class="btnHover my-3" onmouseover="this.style.backgroundColor='rgb(232, 150, 106)'" onmouseout="this.style.backgroundColor='rgb(85,56,38)'">
+        <a href="{{ path('app_journal_index') }}">Back to list</a>
+    </button>
+</div>
+{% endblock %}

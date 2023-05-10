@@ -1,0 +1,281 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	{% block stylesheets %}
+		<link rel="stylesheet" href="{{ asset("css/about.css") }}">
+		<link rel="stylesheet" href="{{ asset("css/admin.css") }}">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-WNxz/X4p1s4Zw7gwh2QJl1jzbHn0Lu9LgBGxQ2Gz1Yv0Z0IRaZKbM8frFt+0ahOWy9Au9g/V55j8NYDFdYMXqA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+	{% endblock %}
+	{% include "components/navbar.html" %}
+
+	<div class="container">
+		<h1>Features</h1>
+
+		<h2>Plan your trip</h2>
+
+	  <p>First, you should <mark>select a country</mark> that you want to visit and <mark>determine your preferences</mark> for the trip. This could include factors such as budget, type of accommodation, type of cuisine, and activities you want to participate in.
+Once you have selected your country and filtered your preferences, you will be presented with a list of accommodations, restaurants, and activities that match your criteria. You can review each option and select the ones that appeal to you the most.
+</p><p>To create your trip itinerary, you can start by selecting an accommodation from the list and <mark>clicking on the "Add to my trip"</mark> button. You can repeat this process for the restaurants and activities that you want to include in your itinerary.
+After selecting your desired activities, you will receive a packing list recommendation that will help ensure you have everything you need for your trip. This will include items such as appropriate clothing, toiletries, and any necessary equipment.
+Once you have completed your itinerary, you can save your trip with just one <mark>click on the "Save my trip" button</mark>. This will allow you to access your itinerary at any time and make any necessary changes or updates.
+</p>
+		<form method="post" action="{{ path('features_filter') }}" style="margin-left: 4rem;">
+
+			<div class="form-group w-50 ">
+
+
+				<label for="country">Country:</label>
+				<select id="country" name="country" class="form-control rounded-0">
+					<option value="Austria">-- Select a country --</option>
+					<option value="Austria">Austria</option>
+					<option value="Switzerland">Switzerland</option>
+				</select>
+				<label for="name">Preferences:</label>
+				<select id="name" name="name" class="form-control rounded-0">
+
+					<option value="">-- Select a preference --</option>
+					<option value="literature">literature</option>
+					<option value="cycling">Cycling</option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-primary mt-1">Filter</button>
+		</form>
+
+		{% if accommodations is not empty %}
+			<h2 class="heading2" style="text-align: center !important; font-family: 'Saira Semi Condensed', sans-serif !important;">Accommodations</h2>
+
+			<ul id="cardStyle">
+
+				<div class="row gap-3 row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mx-auto">
+					{% for accommodation in accommodations %}
+						<div class="aroundDiv" style="max-width: 25rem">
+							<div class="widthCard card my-3" style="max-width: 25rem; padding:0.5rem;">
+								<div class="imageonTop" style="height:15rem; object-fit: fill; overflow: hidden;">
+									<img class="card-img-top" src="{{ accommodation.image }}" alt="{{ accommodation.name }}"/>
+								</div>
+
+								<div class="card-body">
+									<h5 class="card-title">{{ accommodation.name }}</h5>
+									<p id="description" class="card-text">{{ accommodation.description }}</p>
+									<ul class="list-group list-group-flush">
+										<li class="list-group-item">Type:
+											{{ accommodation.getFktype().getName() }}</li>
+										<li class="list-group-item">Budget:
+											{{ accommodation.getFkBudget().getName() }}</li>
+									</ul>
+									<a href="/features/addAccomodation/{{ accommodation.id }}" class="btn btn-primary featuresbtn">Add to my trip</a>
+
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+
+			</ul>
+
+		{% endif %}
+		{% if restaurants is not empty %}
+			<h2 class="heading2" style="text-align: center !important; font-family: 'Saira Semi Condensed', sans-serif !important;">Restaurants</h2>
+
+
+			<ul id="cardStyle">
+
+
+				<div class="row gap-3 row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mx-auto">
+					{% for restaurant in restaurants %}
+						<div class="aroundDiv" style="max-width: 25rem">
+
+							<div class="widthCard card my-3" style="max-width: 25rem; padding:0.5rem;">
+								<div class="imageonTop" style="height:15rem; object-fit: fill; overflow: hidden;">
+
+									<img class="card-img-top" src="{{ restaurant.image }}" alt="{{ restaurant.name }}"/>
+								</div>
+								<h5 class="card-title">{{ restaurant.name }}</h5>
+								<p id="description" class="card-text">{{ restaurant.description }}</p>
+
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item">Cuisine:
+										{{ restaurant.cuisine }}</li>
+									<li class="list-group-item">Budget:
+										{{ restaurant.getFkBudget().getName() }}</li>
+
+								</ul>
+
+								<a href="/features/addRestaurants/{{ restaurant.id }}" class="btn btn-primary featuresbtn" style="margin-left: 4rem;">Add to my trip</a>
+
+
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</ul>
+		{% endif %}
+		{% if activities is not empty %}
+			<h2 class="heading2" style="text-align: center !important; font-family: 'Saira Semi Condensed', sans-serif !important;">Activities</h2>
+			<ul id="cardStyle">
+				<div class="row gap-3 row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mx-auto">
+					{% for activity in activities %}
+						<div class="aroundDiv" style="max-width: 25rem">
+
+							<div class="widthCard card my-3" style="max-width: 25rem; padding:0.5rem;">
+								<div class="imageonTop" style="height:15rem; object-fit: fill; overflow: hidden;">
+
+
+									<img class="card-img-top" src="{{ activity.image }}" alt="{{ activity.name }}"/>
+								</div>
+								<div class="card-body">
+									<h5 class="card-title">{{ activity.name }}</h5>
+									<p id="description" class="card-text">{{ activity.description }}</p>
+
+									<ul class="list-group list-group-flush">
+										<li class="list-group-item">Type:
+											{{ activity.getFkType().getName() }}</li>
+										<li class="list-group-item">Budget:
+											{{ activity.getFkBudget().getName() }}</li>
+
+									</ul>
+									<a href="/features/addActivities/{{ activity.id }}" class="btn btn-primary featuresbtn">Add to my trip</a>
+
+
+								</div>
+							</div>
+						</div>
+
+					{% endfor %}
+				</div>
+			</ul>
+
+			<button class="btnHover" style="width: 10rem;" type="button">
+				<a href="">Add to my trip</a>
+			</button>
+		{% endif %}
+
+		<h1>Packinglists</h1>
+		{% if packinglists is not empty %}
+			<h2>Below is a list of items that are recommended for
+				{{selectedPreferences}}</h2>
+
+			<div class="row gap-3 row-cols-2 row-cols-lg-6 row-cols-md-5 row-cols-sm-3 mx-auto">
+				{% for packinglist in packinglists %}
+					<div id="packing2">
+
+						<div id="packing" style="max-width: 13rem;">
+							<div class="card" style="max-width: 13rem; padding-right: 0 !important; margin-right:0 !important;">
+								<div class="card-body">
+									<h5 class="card-title">
+										<i class="fas {{ packinglist.icon }} fs-1 text-secondary"></i>
+										{{ packinglist.name }}</h5>
+									<p class="card-text d-none">{{ packinglist.getFkType().getName() }}</p>
+
+									<p class="card-text d-none">{{ packinglist.getFKSeason().getName() }}</p>
+
+									<p class="hidden d-none" id="id">{{ packinglist.id }}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+
+		{% else %}
+			<h3 style="margin-left: 4rem;">
+
+				Please select...
+			</h3>
+			<form method="post" action="{{ path('features_filter') }}" style="margin-left: 4rem;">
+				<div class="form-group w-50 ">
+					<label for="name">Preferences:</label>
+					<select id="name" name="name" class="form-control rounded-0">
+
+						<option value="">-- Select a preference --</option>
+						<option value="literature">literature</option>
+						<option calue="cycling">Cycling</option>
+					</select>
+				</div>
+				<button type="submit" class="btn btn-primary mt-1">Filter</button>
+
+			</form>
+		{% endif %}
+
+		<button class="btnHover" type="button" style="width: 10rem; margin-top:1rem; margin-left: 4rem;">
+
+			<a href="{{ path('app_user_profile') }}">Save my Trip</a>
+		</button>
+
+		{# <div class="container">
+																																																																																																																																																																																																																																																																																																																																																																																																																											<h1>Activities</h1>
+																																																																																																																																																																																																																																																																																																																																																																																																																									
+																																																																																																																																																																																																																																																																																																																																																																																																																											{% for activity in activities %}
+																																																																																																																																																																																																																																																																																																																																																																																																																									
+																																																																																																																																																																																																																																																																																																																																																																																																																									
+																																																																																																																																																																																																																																																																																																																																																																																																																												<div class="card my-3" style="max-width: 500px">
+																																																																																																																																																																																																																																																																																																																																																																																																																													<img class="card-img-top" src="{{ activity.image }}" alt="{{ activity.name }}"/>
+																																																																																																																																																																																																																																																																																																																																																																																																																													<div class="card-body">
+																																																																																																																																																																																																																																																																																																																																																																																																																														<h5 class="card-title">{{ activity.name }}</h5>
+																																																																																																																																																																																																																																																																																																																																																																																																																														<p class="card-text">{{ activity.description }}</p>
+																																																																																																																																																																																																																																																																																																																																																																																																																														<ul class="list-group list-group-flush">
+																																																																																																																																																																																																																																																																																																																																																																																																																															<li class="list-group-item">Location:
+																																																																																																																																																																																																																																																																																																																																																																																																																																{{ activity.getFkLocation().getCountry() }},
+																																																																																																																																																																																																																																																																																																																																																																																																																																{{ activity.getFkLocation().getCity() }}</li>
+																																																																																																																																																																																																																																																																																																																																																																																																																															<li class="list-group-item">Type:
+																																																																																																																																																																																																																																																																																																																																																																																																																																{{ activity.getFkType().getName() }}</li>
+																																																																																																																																																																																																																																																																																																																																																																																																																															<li class="list-group-item">Budget:
+																																																																																																																																																																																																																																																																																																																																																																																																																																{{ activity.getFkBudget().getName() }}</li>
+																																																																																																																																																																																																																																																																																																																																																																																																																														</ul>
+																																																																																																																																																																																																																																																																																																																																																																																																																													</div>
+																																																																																																																																																																																																																																																																																																																																																																																																																												</div>
+																																																																																																																																																																																																																																																																																																																																																																																																																											{% endfor %}
+																																																																																																																																																																																																																																																																																																																																																																																																																										</div>
+																																																																																																																																																																																																																																																																																																																																																																																																																										<div class="container">
+																																																																																																																																																																																																																																																																																																																																																																																																																									
+																																																																																																																																																																																																																																																																																																																																																																																																																											<h1>Accommodations</h1>
+																																																																																																																																																																																																																																																																																																																																																																																																																									
+																																																																																																																																																																																																																																																																																																																																																																																																																											<div class="card-deck" style="max-width: 500px">
+																																																																																																																																																																																																																																																																																																																																																																																																																												{% for accommodation in accommodations %}
+																																																																																																																																																																																																																																																																																																																																																																																																																													<div class="card">
+																																																																																																																																																																																																																																																																																																																																																																																																																														<img class="card-img-top" src="{{ accommodation.image }}" alt="{{ accommodation.name }}"/>
+																																																																																																																																																																																																																																																																																																																																																																																																																														<div class="card-body">
+																																																																																																																																																																																																																																																																																																																																																																																																																															<h5 class="card-title">{{ accommodation.name }}</h5>
+																																																																																																																																																																																																																																																																																																																																																																																																																															<p class="card-text">{{ accommodation.description }}</p>
+																																																																																																																																																																																																																																																																																																																																																																																																																															<p class="card-text">
+																																																																																																																																																																																																																																																																																																																																																																																																																																<strong>Location:</strong>
+																																																																																																																																																																																																																																																																																																																																																																																																																																{{ accommodation.getFkLocation().getCountry() }},
+																																																																																																																																																																																																																																																																																																																																																																																																																																{{ accommodation.getFkLocation().getCity() }}</p>
+																																																																																																																																																																																																																																																																																																																																																																																																																															<p class="card-text">
+																																																																																																																																																																																																																																																																																																																																																																																																																																<strong>Type:</strong>
+																																																																																																																																																																																																																																																																																																																																																																																																																																{{ accommodation.getFktype().getName() }}</p>
+																																																																																																																																																																																																																																																																																																																																																																																																																															<p class="card-text">
+																																																																																																																																																																																																																																																																																																																																																																																																																																<strong>Budget:</strong>
+																																																																																																																																																																																																																																																																																																																																																																																																																																{{ accommodation.getFkBudget().getName() }}</p>
+																																																																																																																																																																																																																																																																																																																																																																																																																														</div>
+																																																																																																																																																																																																																																																																																																																																																																																																																													</div>
+																																																																																																																																																																																																																																																																																																																																																																																																																												{% endfor %}
+																																																																																																																																																																																																																																																																																																																																																																																																																											</div>
+																																																																																																																																																																																																																																																																																																																																																																																																																										</div>
+																																																																																																																																																																																																																																																																																																																																																																																																																									
+																																																																																																																																																																																																																																																																																																																																																																																																																										<div class="container">
+																																																																																																																																																																																																																																																																																																																																																																																																																											<h1>Restaurants</h1>
+																																																																																																																																																																																																																																																																																																																																																																																																																									
+																																																																																																																																																																																																																																																																																																																																																																																																																											{% for restaurant in restaurants %}
+																																																																																																																																																																																																																																																																																																																																																																																																																												<div class="card my-3" style="max-width: 500px">
+																																																																																																																																																																																																																																																																																																																																																																																																																													<div class="card-body">
+																																																																																																																																																																																																																																																																																																																																																																																																																														<img class="card-img-top" src="{{ restaurant.image }}" alt="{{ restaurant.name }}"/>
+																																																																																																																																																																																																																																																																																																																																																																																																																									
+																																																																																																																																																																																																																																																																																																																																																																																																																														<h5 class="card-title">{{ restaurant.name }}</h5>
+																																																																																																																																																																																																																																																																																																																																																																																																																														<p class="card-text">{{ restaurant.description }}</p>
+																																																																																																																																																																																																																																																																																																																																																																																																																														<ul class="list-group list-group-flush">
+																																																																																																																																																																																																																																																																																																																																																																																																																															<li class="list-group-item">Location:
+																																																																																																																																																																																																																																																																																																																																																																																																																																{{ restaurant.getFkLocation().getCountry() }},
+																																																																																																																																																																																																																																																																																																																																																																																																																																{{ restaurant.getFkLocation().getCity() }}</li>
+																																																																																																																																																																																																																																																																																																																																																																																																																															<li class="list-group-item">Cuisine:
+																																																																																																																																																																																																																																																																																																																																																																																																																																{{ restaurant.cuisine }}</li>
+																																																																																																																																																																																																																																																																																																																																																																																																																															<li class="list-group-item">Budget:
+																																																																																																																																																																																																																																																																																																																																																																																																																																{{ restaurant.getFkBudget().getName() }}</li>
+																																																																																																																																																																																																																																																																																																																																																																																																																														</ul>
+																																																																																																																																																																																																																																																																																																																																																																																																																													</div>
+																																																																																																																																																																																																																																																																																																																																																																																																																												</div>
+																																																																																																																																																																																																																																																																																																																																																																																																																											{% endfor %}
+																																																																																																																																																																																																																																																																																																																																																																																																																										</div> #}
+	</div>
+
+{% endblock %}

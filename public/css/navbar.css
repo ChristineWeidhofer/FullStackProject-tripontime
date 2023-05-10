@@ -1,0 +1,322 @@
+hr {
+    border: 0;
+    height: 2px;
+    background: #000000;
+    opacity: unset;
+}
+
+.navbar {
+    z-index: 9999;
+}
+
+.container-fluid {
+    padding-right: 0 !important;
+    padding-left: 0;
+    width: 100%;
+}
+
+#triplogo {
+    width: 10rem;
+}
+
+nav ul li a {
+    display: flex;
+    text-align: center;
+}
+
+a i:hover {
+    color: rgb(232, 150, 106);
+}
+
+#quote {
+    font-family: 'Montserrat', sans-serif;
+}
+
+@media (max-width: 986px) {
+    .navbar-collapse {
+        background-color: black;
+        color: white !important;
+    }
+
+    .navbar-text {
+        color: white !important;
+    }
+
+    .bg-sm-dark {
+        background-color: rgb(0, 0, 0) !important;
+        color: white !important;
+    }
+
+    .navbar-brand {
+        color: white !important;
+    }
+
+    .nav-link {
+        color: white !important;
+    }
+
+    .main-navbar-wrapper {
+        border-right: none !important;
+        height: auto !important;
+    }
+
+    .navbar {
+        width: 100% !important;
+        margin-right: 0 !important;
+
+    }
+
+    .nav-item {
+        margin-left: 0 !important;
+    }
+
+    #loginmarg {
+        margin-left: 1rem !important;
+        font-size: 1rem !important;
+    }
+
+    .logoutbtns {
+        margin-left: 1rem !important;
+        font-size: 1rem !important;
+    }
+
+}
+
+@media (max-width: 1164px) {
+    #quote {
+        font-size: small;
+    }
+
+    #loginmarg {
+        margin-left: 2rem !important;
+        font-size: 1rem !important;
+    }
+
+    .logoutbtns {
+        margin-left: 1rem !important;
+        font-size: 1rem !important;
+    }
+
+    #styleFeature {
+        width: 15rem !important;
+    }
+
+    .nav-item {
+        font-size: 1rem !important;
+    }
+}
+
+@media (max-width: 1371px) {
+    #quote {
+        font-size: small;
+    }
+
+    #loginmarg {
+        margin-left: 2rem !important;
+    }
+
+    #styleFeature {
+        width: 20rem !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    #quote {
+        font-size: small;
+    }
+
+    #loginmarg {
+        margin-left: 2rem !important;
+        font-size: 1rem !important;
+    }
+
+    .logoutbtns {
+        margin-left: 1rem !important;
+        font-size: 1rem !important;
+    }
+
+    #styleFeature {
+        width: 15rem !important;
+    }
+
+    .nav-item {
+        font-size: 1rem !important;
+    }
+
+    .main-navbar-wrapper {
+        padding-left: unset !important;
+    }
+}
+
+@media (max-width: 982x) {
+    #togglerImage {
+        width: 10% !important;
+    }
+
+    .navbar-brand {
+        display: none !important;
+    }
+
+    .logoutbtns {
+        margin-left: 0 !important;
+    }
+
+    #loginmarg {
+        margin-left: 0 !important;
+    }
+
+    #quote {
+        display: none !important;
+    }
+
+    #styleFeature #navIcons {
+        background-color: #000000 !important;
+    }
+
+    .styleFeature {
+        background-color: #000000 !important;
+    }
+
+    #quote {
+        background-color: #000000 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    #togglerImage {
+        width: 40% !important;
+        margin-left: 29%;
+    }
+
+    .main-navbar-wrapper {
+        padding-left: 5.9rem;
+    }
+
+    .navbar-brand {
+        display: none !important;
+    }
+
+    .logoutbtns {
+        margin-left: 0 !important;
+    }
+
+    #loginmarg {
+        margin-left: 0 !important;
+    }
+
+    #quote {
+        display: none !important;
+    }
+
+    #styleFeature #navIcons {
+        background-color: #000000 !important;
+
+    }
+
+    .styleFeature {
+        background-color: #000000 !important;
+        flex-direction: unset !important;
+        width: 768px !important;
+        text-align: center;
+        margin-left: 34%;
+    }
+
+    #quote {
+        background-color: #000000 !important;
+    }
+}
+
+#navIcons {
+    width: 100%;
+}
+
+
+
+@media (max-width: 425px) {
+    #togglerImage {
+        width: 80% !important;
+        margin-left: unset !important;
+    }
+
+    .navbar-brand {
+        display: none;
+    }
+
+    .logoutbtns {
+        margin-left: 0 !important;
+    }
+
+    #loginmarg {
+        margin-left: 0 !important;
+    }
+
+    #styleFeature #navIcons {
+        background-color: #000000 !important;
+    }
+
+    .styleFeature {
+        background-color: #000000 !important;
+    }
+
+    #quote {
+        background-color: #000000 !important;
+        display: none !important;
+    }
+
+    .styleFeature {
+        background-color: #000000 !important;
+        flex-direction: unset !important;
+        width: 768px !important;
+        text-align: center;
+        margin-left: 20% !important;
+    }
+
+    #quote {
+        background-color: #000000 !important;
+    }
+
+}
+
+@media (max-width: 320px) {
+    #togglerImage {
+        width: 70% !important;
+        margin-left: unset !important;
+    }
+
+    .navbar-brand {
+        display: none;
+    }
+
+    .logoutbtns {
+        margin-left: 0 !important;
+    }
+
+    #loginmarg {
+        margin-left: 0 !important;
+    }
+
+    #quote {
+        display: none !important;
+    }
+
+    #styleFeature #navIcons {
+        background-color: #000000 !important;
+    }
+
+    .styleFeature {
+        background-color: #000000 !important;
+    }
+
+    #quote {
+        background-color: #000000 !important;
+    }
+
+    .styleFeature {
+        background-color: #000000 !important;
+        flex-direction: unset !important;
+        width: 768px !important;
+        text-align: center;
+        margin-left: 13% !important
+    }
+
+}

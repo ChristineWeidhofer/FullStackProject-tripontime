@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+{% block title %}Packinglist index
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset("css/about.css") }}">
+	<link rel="stylesheet" href="{{ asset("css/admin.css") }}">
+{% endblock %}
+
+{% block body %}
+	{% include "components/navbar.html" %}
+
+	<div class="backColor">
+		<div class="container">
+			<h1>Packinglist index</h1>
+			<table class="table table-light table-striped border border-2 border-dark table-responsive-sm">
+
+
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Name</th>
+						<th>Icon</th>
+						<th>Type</th>
+						<th>Preferences</th>
+						<th>Season</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for packinglist in packinglists %}
+						<tr>
+							<td>{{ packinglist.id }}</td>
+							<td>{{ packinglist.name }}</td>
+							<td>
+								<i class="{{ packinglist.icon }}"></i>
+							</td>
+
+							<td>{{ packinglist.getFkType().getName() }}</td>
+							<td>{{ packinglist.getPreferences().name() }}</td>
+							<td>{{ packinglist.getFKSeason().getName() }}</td>
+							<td>
+								<a id="LittleBtns" href="{{ path('app_packinglist_show', {'id': packinglist.id}) }}">How</a>
+								<a id="LittleBtns" href="{{ path('app_packinglist_edit', {'id': packinglist.id}) }}">Edit</a>
+								<a id="LittleBtns" href="{{ path('app_packinglist_edit', {'id': packinglist.id}) }}">Delete</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="4">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+			<button class="btnHover" style="width: 12rem;	font-size: 1.125rem;padding: 0.625rem; border: 2px solid #fefefe; background-color: rgb(85,56,38); cursor: pointer; " onmouseover="this.style.backgroundColor='rgb(232, 150, 106)'" onmouseout="this.style.backgroundColor='rgb(85,56,38)'">
+
+
+				<a href="{{ path('app_packinglist_new') }}" style="text-decoration: none; color: #fff;">Create new</a>
+
+
+			</button>
+		</div>
+
+		{# <a href="{{ path('app_packinglist_new') }}">Create new</a> #}
+	</div>
+
+{% endblock %}

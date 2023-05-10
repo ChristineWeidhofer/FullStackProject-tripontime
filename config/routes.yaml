@@ -1,0 +1,14 @@
+controllers:
+  resource:
+    path: ../src/Controller/
+    namespace: App\Controller
+  type: attribute
+# features:
+#   path: /features
+#   controller: App\Controller\FeaturesController::index
+#   methods: ["GET"]
+
+# features_filter:
+#   path: /features/filter
+#   controller: App\Controller\FeaturesController::filter
+#   methods: ["POST"]

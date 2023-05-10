@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+
+	<link href="{{ asset('css/register.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+
+	<div id="background">
+		<div class="container">
+			<div id="register" class="tabcontent">
+
+				{{ form_start(registrationForm) }}
+				<h2>REGISTER</h2>
+				<div
+					class="input-group">
+					{# <label for="name">Name:</label> #}
+					{{ form_row(registrationForm.first_name) }}
+				</div>
+				<div
+					class="input-group">
+					{# <label for="name">Last Name:</label> #}
+					{{ form_row(registrationForm.last_name) }}
+				</div>
+				<div class="input-group">
+
+
+					{{ form_row(registrationForm.picture, {
+            
+        }) }}
+				</div>
+
+				<div
+					class="input-group">
+					{# <label for="email">Email:</label> #}
+					{{ form_row(registrationForm.email) }}
+				</div>
+
+				<div
+					class="input-group">
+					{# <label for="password">Password:</label> #}
+
+					{{ form_row(registrationForm.password, {
+            
+        }) }}
+				</div>
+
+				<div class="input-group">
+					<button type="submit">Register</button>
+					<a href="/login" class="btn btn-outline-secondary rounded-0">Login</a>
+				</div>
+
+				{{ form_end(registrationForm) }}
+			</div>
+		</div>
+	</div>
+
+
+	{# {{ form_start(registrationForm) }}
+	        {{ form_row(registrationForm.first_name) }}
+	        {{ form_row(registrationForm.last_name) }}
+	        {{ form_row(registrationForm.email) }}
+	        {{ form_row(registrationForm.password, {
+	            label: 'Password'
+	        }) }}
+	 {{ form_end(registrationForm) }} #}
+{% endblock %}

@@ -1,0 +1,107 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#register {
+    width: 25rem;
+    padding: 2.5rem;
+    background-color: rgb(40, 38, 38);
+}
+
+h2 {
+    margin-bottom: 1.25rem;
+    color: white;
+    text-align: center;
+    font-family: 'Saira Semi Condensed', sans-serif;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.25rem;
+    justify-content: space-between;
+    width: 100%;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 0.31rem;
+    color: white;
+}
+
+input {
+    padding: 0.625rem;
+    border: none;
+}
+
+button {
+    padding: 0.625rem 1.25rem;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 10%;
+}
+
+html {
+    background: url("../pictures/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#background {
+    background: url("../pictures/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+@media (max-width: 989px) {
+    #background {
+        background: url("https://www.htmlcsscolor.com/preview/gallery/282629.png") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+    html {
+        background: url("https://www.htmlcsscolor.com/preview/gallery/282629.png") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+}
+
+button {
+    width: 100%;
+    font-size: 1.125rem;
+    padding: 0.625rem;
+    border: 2px solid #FEFEFE;
+    background-color: unset;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 0 !important;
+}
+
+button:hover {
+    background: #ddd;
+    color: black;
+}

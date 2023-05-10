@@ -1,0 +1,157 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}About Page
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset("css/about.css") }}">
+	<link rel="stylesheet" href="{{ asset("css/admin.css") }}">
+	<link rel="stylesheet" href="{{ asset("css/navbar.css") }}">
+	<style>
+		#containerHow {
+			background-color: rgba(255, 255, 255, 0.703);
+			border: 2px solid black;
+			padding: 1rem;
+			margin-top: 12rem;
+		}
+		@media(max-width: 768px) {
+			#containerHow {
+				background-color: unset !important;
+				border: unset !important;
+				padding: 1rem;
+				margin-top: 12rem;
+			}
+			.white-btn {
+				color: white;
+				border-color: white !important;
+			}
+			#AboutUs {
+				border-color: white !important;
+
+			}
+
+		}
+	</style>
+{% endblock %}
+{# {% block stylesheets %}
+	{{ parent() }}
+
+	<link href="{{ asset('css/about.css') }}" rel="stylesheet"/>
+{% endblock %} #}
+
+{% block body %}
+
+	{% include "components/navbar.html" %}
+	<div class="container w-100">
+		<div class="backColor">
+
+
+			<div class="example-wrapper">
+				<h1>
+					Plan your travel around Europa</h1>
+
+
+			</div>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+
+		<!-- Swiper -->
+		<div class="swiper mySwiper">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<img src="../pictures/london.jpg"/>
+				</div>
+				<div class="swiper-slide">
+					<img src="../pictures/Istanbul.jpg"/>
+				</div>
+				<div class="swiper-slide">
+					<img src="../pictures/schweiz.jpg"/>
+				</div>
+				<div class="swiper-slide">
+					<img src="../pictures/amsterdam.jpg"/>
+				</div>
+				<div class="swiper-slide">
+					<img src="../pictures/barcelona.jpg"/>
+				</div>
+				<div class="swiper-slide">
+					<img src="../pictures/vienna.jpg"/>
+				</div>
+				<div class="swiper-slide">
+					<img src="../pictures/latvia.jpg"/>
+				</div>
+				<div class="swiper-slide">
+					<img src="../pictures/italy.jpg"/>
+				</div>
+				<div class="swiper-slide">
+					<img src="../pictures/greece.jpg"/>
+				</div>
+			</div>
+			<!-- how to -->
+			<div id="containerHow">
+
+
+				<div class="animated animatedFadeInUp fadeInUp" style="margin-bottom: 4rem">
+
+					<h3 class="text-center">Do you want to start planning the trip of your lifetime?</h3>
+					<p>
+						It is an adventure you've always dreamt of, but haven't been able to plan and execute properly. Here are some useful pointers on how to plan a trip on our site, that put an end to the cluttered chaos by streamlining your vacations to perfect harmony and pure bliss.
+					</p>
+				</div>
+				<div class="swiper mySwiper">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<img src="../pictures/Screenshot1.png"/>
+						</div>
+						<div class="swiper-slide">
+							<img src="../pictures/Screenshot2.png"/>
+						</div>
+						<div class="swiper-slide">
+							<img src="../pictures/Screenshot3.png"/>
+						</div>
+						<div class="swiper-slide">
+							<img src="../pictures/Screenshot4.png"/>
+						</div>
+						<div class="swiper-slide">
+							<img src="../pictures/Screenshot5.png"/>
+						</div>
+					</div>
+
+
+					<h4 style="margin-top: 10rem;">Step 1</h4>
+
+					Register an account with us, it will only take a minute!
+					<a id href="/register" class="white-btn btn rounded-0 ms-3 " style="border: 2px solid black; font-weight:bolder;">Register here</a>
+
+
+					<h4 class="mt-4">Step 2</h4>
+					Login with your newly created credentials!
+					<a id href="/login" class="white-btn btn rounded-0 ms-3" style="border: 2px solid black; font-weight:bolder;">Login here</a>
+
+
+					<h4 class="mt-4">Step 3</h4>
+					Select a Country and some Preference from our dropdown-menu and click on
+					<a id class="white-btn btn rounded-0 ms-3" style="border: 2px solid black; font-weight:bolder;">Filter</a>
+
+
+					<h4 class="mt-4">Step 4</h4>
+					Sit back and browse through our suggestions for your preferred restaurants, accommodation and activities!
+					<a id href="/register" class="white-btn btn rounded-0 ms-3" style="border: 2px solid black; font-weight:bolder;">Get Started</a>
+
+
+					<!-- how to END-->
+
+					<div id="AboutUs" class="animated animatedFadeInUp fadeInUp" style="margin-top:4rem;border-top:2px solid black">
+						<h1>ABOUT US</h1>
+						<p>Welcome to our travel planning website - TRIP ON TIME!
+																																																																																																																																																																																																																																																																																																																																	We are a team of passionate travelers who understand the thrill and joy that comes with exploring new destinations. Our mission is to help you plan and book the perfect trip that fits your unique travel style.
+																																																																																																																																																																																																																																																																																																																																	Our website offers a one-stop-shop for all your travel needs. From accommodations, activities, packing lists, travel journals and more, we have everything you need to make your travel dreams a reality. Our team works tirelessly to curate the best deals and packages from top travel providers, ensuring that you get the best value for your money.
+																																																																																																																																																																																																																																																																																																																																	Whether you're planning a romantic getaway, a family vacation, or a solo adventure, our website has something for everyone. Our user-friendly interface allows you to browse and chose travel options with ease, and our expert team is always available to answer any questions and provide personalized recommendations.
+																																																																																																																																																																																																																																																																																																																																	At our travel planning website, we believe that travel should be accessible to everyone. That's why we strive to offer affordable and inclusive travel options that cater to a diverse range of travelers. We also prioritize sustainability and responsible tourism practices, ensuring that your travels have a positive impact on the communities and environments you visit.
+																																																																																																																																																																																																																																																																																																																																	Thank you for considering our website for your travel planning needs. We can't wait to help you plan the trip of a lifetime!</p>
+					</div>
+				</div>
+			</div>
+
+			{% include "components/footer.html" %}
+		{% endblock %}

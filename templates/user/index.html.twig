@@ -1,0 +1,178 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard for users
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset("css/about.css") }}">
+	<link rel="stylesheet" href="{{ asset("css/admin.css") }}">
+{% endblock %}
+
+{% block body %}
+	{% include "components/navbar.html" %}
+
+	<div class="backColor">
+		<div class="container">
+			<h1>Dashboard for Users</h1>
+			<button class="btnHover mb-5" style="width: 12rem;font-size: 1.125rem; padding: 0.625rem; border: 2px solid #fefefe; margin-left:0 !important; background-color: rgb(85,56,38); cursor: pointer; " onmouseover="this.style.backgroundColor='rgb(232, 150, 106)'" onmouseout="this.style.backgroundColor='rgb(85,56,38)'">
+
+				<a href="{{ path('app_user_new') }}">Create new User</a>
+
+			</button>
+			<div class="row">
+		<div class="col-md-12">
+			<div class="table-responsive">
+           	<table class="table table-light table-striped border border-2 border-dark  table-responsive">
+			
+
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Picture</th>
+						<th>First_name</th>
+						<th>Last_name</th>
+						<th>Email</th>
+						<th>Role(s)</th>
+
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in users %}
+						<tr>
+							<td>{{ user.id }}</td>
+							<td><img src="{{ asset("pictures/" ~ user.picture ) }}" alt="user.firstName" width="150px"></td>
+							<td>{{ user.firstName }}</td>
+							<td>{{ user.lastName }}</td>
+							<td>{{ user.email }}</td>
+							<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+
+							<td>
+								<div class="wrap-btns d-flex flex-column justify-content-center align-items-center">
+									<a id="LittleBtns" class="btn btn-success mt-2 me-2" href="{{ path('app_user_show', {'id': user.id}) }}">Show</a>
+									<a id="LittleBtns" class="btn btn-warning mt-2 me-2" href="{{ path('app_user_edit', {'id': user.id}) }}">Edit</a>
+
+									<a id="LittleBtns" class="btn btn-danger mt-2 me-2" href="{{ path('app_user_edit', {'id': user.id}) }}">Delete</a>
+
+								</div>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="8">No records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<h2>Accommodations</h2>
+				{% for accommodation in accommodations %}
+					<div class="card mb-3">
+						<div class="card-body">
+							<h5 class="card-title">{{ accommodation.name }}</h5>
+							<p class="card-text">{{ accommodation.description }}</p>
+						</div>
+						<a  class="btn btn-success w-25 mx-auto" href="{{ path('app_accommodation_show', {'id': accommodation.id}) }}">show</a>
+						<a class="btn btn-warning w-25 mx-auto mb-4" href="{{ path('app_accommodation_edit', {'id': accommodation.id}) }}">edit</a>
+
+					</div>
+
+				{% endfor %}
+			</div>
+			<div class="col-md-4">
+				<h2>Restaurants</h2>
+				{% for restaurant in restaurants %}
+					<div class="card mb-3">
+						<div class="card-body">
+							<h5 class="card-title">{{ restaurant.name }}</h5>
+							<p class="card-text">{{ restaurant.description }}</p>
+						</div>
+						<a class="btn btn-success w-25 mx-auto" href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">show</a>
+						<a class="btn btn-warning w-25 mx-auto mb-4" href="{{ path('app_restaurant_edit', {'id': restaurant.id}) }}">edit</a>
+
+					</div>
+
+				{% endfor %}
+			</div>
+			<div class="col-md-4">
+				<h2>Activities</h2>
+				{% for activity in activities %}
+					<div class="card mb-3">
+						<div class="card-body">
+							<h5 class="card-title">{{ activity.name }}</h5>
+							<p class="card-text">{{ activity.description }}</p>
+						</div>
+						<a class="btn btn-success w-25 mx-auto" href="{{ path('app_activity_show', {'id': activity.id}) }}">show</a>
+						<a class="btn btn-warning w-25 mx-auto mb-4" href="{{ path('app_activity_edit', {'id': activity.id}) }}">edit</a>
+
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+	{# here is the packinglist CRUD #}
+
+	<div class="backColor">
+		<div class="container">
+			<h1>Packinglist index</h1>
+
+			<div class="row">
+		<div class="col-md-12">
+			<div class="table-responsive">
+
+			<table class="table table-light table-striped border border-2 border-dark table-responsive-sm">
+
+
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Name</th>
+						<th>Icon</th>
+						<th>Type</th>
+						<th>Preferences</th>
+						<th>Season</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for packinglist in packinglists %}
+						<tr>
+							<td>{{ packinglist.id }}</td>
+							<td>{{ packinglist.name }}</td>
+							<td>
+								<i class="{{ packinglist.icon }}"></i>
+							</td>
+
+							<td>{{ packinglist.getFkType().getName() }}</td>
+							<td>{{ packinglist.getPreferences().name() }}</td>
+							<td>{{ packinglist.getFKSeason().getName() }}</td>
+							<td>
+								<a href="{{ path('app_packinglist_show', {'id': packinglist.id}) }}">show</a>
+								<a href="{{ path('app_packinglist_edit', {'id': packinglist.id}) }}">edit</a>
+								<a href="{{ path('app_packinglist_edit', {'id': packinglist.id}) }}">delete</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="4">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+			<button class="btnHover" style="width: 8rem;	font-size: 1.125rem;padding: 0.625rem; border: 2px solid #fefefe; background-color: rgb(85,56,38); cursor: pointer; " onmouseover="this.style.backgroundColor='rgb(232, 150, 106)'" onmouseout="this.style.backgroundColor='rgb(85,56,38)'">
+
+
+				<a href="{{ path('app_packinglist_new') }}" style="text-decoration: none; color: #fff;">Create new</a>
+
+
+			</button>
+		</div>
+
+		{# <a href="{{ path('app_packinglist_new') }}">Create new</a> #}
+	</div>
+{% endblock %}

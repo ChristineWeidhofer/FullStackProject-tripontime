@@ -1,0 +1,293 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Landing Page
+{% endblock %}
+{% block stylesheets %}
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		html,
+		body {
+			height: 100%;
+		}
+		body {
+			margin: 0;
+			font-family: Arial;
+			font-size: 1.063rem;
+		}
+
+		#myVideo {
+			object-fit: cover;
+			position: fixed;
+			right: 0;
+			bottom: 0;
+			width: 100vw;
+			height: 100vh;
+			z-index: -2;
+		}
+
+		.content {
+			position: absolute;
+			bottom: 0;
+			background: rgba(0, 0, 0, 0.5);
+			color: #f1f1f1;
+			height: 100%;
+			width: 15%;
+			padding-left: 2rem;
+			padding-right: 2rem;
+			padding-top: 1rem;
+			left: 85%;
+			text-align: center;
+		}
+
+
+		@media(min-width: 1201px) {
+			.content {
+				width: 15%;
+				left: 85%;
+			}
+			#myVideo {
+				object-fit: cover;
+				position: fixed;
+				right: 0;
+				bottom: 0;
+				width: 100vw;
+				height: 100vh;
+				z-index: -2;
+			}
+		}
+
+		@media(max-width: 1200px) {
+			.content {
+				width: 25%;
+				left: 75%;
+			}
+			#myVideo {
+				object-fit: cover;
+				position: fixed;
+				right: 0;
+				bottom: 0;
+				width: 100vw;
+				height: 100vh;
+				z-index: -2;
+			}
+		}
+		@media(max-width: 768px) {
+			.content {
+				width: 100%;
+				height: 54%;
+				left: 0;
+			}
+			#myVideo {
+				object-fit: cover;
+				position: fixed;
+				right: 0;
+				bottom: 0;
+				width: 100vw;
+				height: 100vh;
+				z-index: -2;
+			}
+
+			#myBtn {
+				width: 8rem;
+				font-size: 1.125rem;
+				padding: 0.625rem;
+				border: 2px solid #fefefe;
+				background-color: unset;
+				color: #fff;
+				cursor: pointer;
+				margin-top: 0 !important;
+
+			}
+			#myButtons {
+				row-gap: 1rem;
+			};
+			#logo {
+				position: absolute;
+				margin-top: 2rem;
+
+			}
+			#logoWhite {
+				position: relative;
+				left: 29%;
+			}
+		}
+		@media(max-width: 700px) {
+			.content {
+				width: 100%;
+				height: 52%;
+				left: 0;
+			}
+			#myBtn {
+				width: 8rem;
+				font-size: 1.125rem;
+				padding: 0.625rem;
+				border: 2px solid #fefefe;
+				background-color: unset;
+				color: #fff;
+				cursor: pointer;
+				margin-top: 0 !important;
+			}
+			#myButtons {
+				row-gap: 1rem !important;
+			}
+			#logo {
+				position: absolute;
+				margin-top: 2rem;
+
+			}
+			#logoWhite {
+				position: relative;
+				left: 18%;
+			}
+		}
+		@media(max-width: 600px) {
+			#logo {
+				position: absolute;
+				margin-top: 2rem;
+
+			}
+			#logoWhite {
+				position: relative;
+				width: 20rem !important;
+				left: 0;
+			}
+		}
+
+		@media(max-width: 538px) {
+
+			#logo {
+				position: absolute;
+				text-align: center;
+				margin-top: 2rem;
+				width: 50% !important;
+
+			}
+			#logoWhite {
+				position: relative;
+				width: 100% !important;
+				left: 0;
+			}
+
+		}
+		@media(max-width: 425px) {
+			#logo {
+				position: absolute;
+				text-align: center;
+				margin-top: 3rem;
+				width: 50% !important;
+			}
+			#logoWhite {
+				position: relative;
+				width: 100% !important;
+				left: 0;
+			}
+
+		}
+		@media(max-width: 321px) {
+			#logo {
+				position: absolute;
+				text-align: center;
+				margin-top: 3rem;
+				width: 50% !important;
+			}
+			#logoWhite {
+				position: relative;
+				width: 100% !important;
+				left: 0;
+			}
+
+		}
+		#myBtn {
+			width: 8rem;
+			font-size: 1.125rem;
+			padding: 0.625rem;
+			border: 2px solid #fefefe;
+			background-color: unset;
+			color: #fff;
+			cursor: pointer;
+			margin-top: 19rem;
+		}
+
+		#myBtn:hover {
+			background: #ddd;
+			color: black;
+		}
+		.btnHover:hover {
+			background: #ddd !important;
+			color: black !important;
+
+		}
+		a:hover {
+			color: black !important;
+		}
+		h1 {
+			font-family: 'Saira Semi Condensed', sans-serif;
+
+		}
+		#logo {
+			width: 20rem;
+			margin-top: 3rem;
+			margin-left: 3rem;
+		}
+		#logoWhite {
+			width: 150% !important;
+
+		}
+	</style>
+{% endblock %}
+{% block body %}
+	<video autoplay muted loop id="myVideo">
+		<source src="{{ asset("pictures/trip.mp4") }}" type="video/mp4">
+		Your browser does not support HTML5 video.
+	</video>
+	<div id="logo">
+		<img id="logoWhite" src="{{ asset("pictures/logoWhite.png") }}" alt="">
+	</div>
+	<div class="content">
+		<div>
+			<h1>TRAVEL PLANNER</h1>
+
+
+			<div id="myButtons" style=" display: flex; flex-direction: column;row-gap: 1.5rem; align-items:center;">
+
+
+				<button class="btnHover" style="width: 8rem;	font-size: 1.125rem;padding: 0.625rem; border: 2px solid #fefefe; background-color: unset; cursor: pointer;">
+
+
+					<a href="/login" style="text-decoration: none; color: #fff;">Login</a>
+				</button>
+				<button class="btnHover" style="width: 8rem;	font-size: 1.125rem;padding: 0.625rem; border: 2px solid #fefefe; background-color: unset; cursor: pointer; ">
+					<a href="/register" style="text-decoration: none; color: #fff;">Register</a>
+				</button>
+				<button class="btnHover" style="width: 8rem;	font-size: 1.125rem;padding: 0.625rem; border: 2px solid #fefefe; background-color: unset; cursor: pointer; ">
+					<a href="/home" style="text-decoration: none; color: #fff;">About</a>
+				</button>
+				<button id="myBtn" onclick="myFunction()">
+					<i class="fa-solid fa-pause"></i>
+				</button>
+			</div>
+
+
+		</div>
+
+	</div>
+	<script>
+		var video = document.getElementById("myVideo");
+var btn = document.getElementById("myBtn");
+
+function myFunction() {
+if (video.paused) {
+video.play();
+btn.innerHTML = "<i class='fa-solid fa-pause'></i>";
+
+} else {
+video.pause();
+btn.innerHTML = "<i class='fa-solid fa-play'></i>";
+
+}
+}
+	</script>
+{% endblock %}

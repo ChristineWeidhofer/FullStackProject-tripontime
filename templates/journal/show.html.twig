@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Journal{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset("css/about.css") }}">
+	<link rel="stylesheet" href="{{ asset("css/admin.css") }}">
+    
+{% endblock %}
+
+{% block body %}
+    {% include "components/navbar.html" %}
+
+<div class="backColor w-75 mx-auto">
+    <div class="container">
+        <h1>{{ journal.name }}</h1>
+
+        <div class="card-wrapper w-100 w-md-75 mx-auto ">
+            <div class="card border-0 p-0 m-0d-flex flex-column flex-md-row">
+                <div class="wrap-pic w-100 w-md-50">
+                    <img src="{{ asset("pictures/" ~ journal.image ) }}" class="card-img-to w-100" alt="{{ journal.name }}" style="aspect-ratio:1;object-fit:cover">
+                </div>
+                <div class="wrap-body w-100 w-md-50">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ journal.name }}</h5>
+                        <p class="card-text">{{ journal.description }}</p>
+                        <div class="link-wrapper text-center">
+                            <h5 class="card-title mb-3">Share to your favourite network</h5>
+                            <a href="www.facebook.com" class="card-link btn btn-outline-dark rounded-0 mx-2"><i class="bi bi-facebook" aria-label="Share on Facebook"></i></a>
+                            <a href="www.instagram.com" class="card-link btn btn-outline-dark rounded-0 mx-2"><i class="bi bi-instagram" aria-label="Share on Instagram"></i></a>
+                            <a href="www.twitter.com" class="card-link btn btn-outline-dark rounded-0 mx-2"><i class="bi bi-twitter" aria-label="Share on Twitter"></i></a>
+                        </div>
+                    
+                    </div>
+                    <div class="card-body d-flex justify-content-center align-items-center">
+                        <a href="{{ journal.website }}" class="card-link btn btn-outline-dark rounded-0">Link</a>
+                        <a href="{{ path('app_journal_index') }}" class="btn btn-outline-dark rounded-0 mx-2">Back to list</a>
+                        <a href="{{ path('app_journal_edit', {'id': journal.id}) }}" class="btn btn-outline-dark rounded-0">Edit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+
+    {{ include('journal/_delete_form.html.twig') }}
+    </div>
+</div>
+{% endblock %}
